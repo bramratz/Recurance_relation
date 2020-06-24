@@ -27,9 +27,11 @@ def mortalRabbits (nMonths: int, mLive: int) -> int:
     # Iterate over n months starting from month 2
     for i in range(1, nMonths):
         # New babies born are equal to the number of adults present in 
-        #   the population 
+        #   the population. Sum excluding the furthest column in the array
+        #   as these will be babies in the first month and are unable 
+        #   to reproduce 
         newBabies = sum(alive[:-1])
-        
+      
         # Shift adults left 1 position (getting older)
         alive[:-1] = alive[1:]
         
