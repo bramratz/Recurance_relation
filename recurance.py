@@ -22,10 +22,24 @@ def mortalRabbits (nMonths: int, mLive: int) -> int:
     alive = [0] * mLive
     
     # Always start with one rabbit 
-    alive[-1] = [1]
+    alive[-1] = 1
     
-    #
+    # Iterate over n months starting from month 2
+    for i in range(1, nMonths):
+        # New babies born are equal to the number of adults present in 
+        #   the population 
+        newBabies = sum(alive[:-1])
+        
+        # Shift adults left 1 position (getting older)
+        alive[:-1] = alive[1:]
+        
+        # Add new babies to the list 
+        alive[-1] = newBabies
+    
+    # After n months the total number of rabbits will be the total number 
+    # of individuals (both babies and adults) present in the array
+    return sum(alive)
 
 # Calculate total num pairs in final round  
-totalPairs = Adults + Babies
-print(f"The total number of pairs is: {totalPairs}")
+living = mortalRabbits(n, m)
+print(f"The total number of pairs is: {living}")
